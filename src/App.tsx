@@ -3,7 +3,7 @@ import ReactConfetti from 'react-confetti';
 import { useLocalStorage, useWindowSize } from 'usehooks-ts';
 import OptionSection from './components/OptionSection';
 import Toggle from './components/Toggle';
-import { formatTimestampHoursMinutes, formatTimestampMinutesSecondes } from './time-utils';
+import { formatTimestampHoursMinutes, formatTimestampMinutesSecondes, generateProgressFavicon } from './time-utils';
 import { useTimeHook } from './useTimeHook';
 
 import iconSrc from '@/assets/favicon.png';
@@ -124,6 +124,7 @@ export function App() {
 
     useEffect(() => {
         document.title = 'Next GATE: ' + formatTimestampMinutesSecondes(timeUntil);
+        generateProgressFavicon(timeUntil / (20 * 60 * 1000));
     }, [timeUntil]);
 
     return (

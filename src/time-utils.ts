@@ -33,5 +33,10 @@ export function generateProgressFavicon(progress: number): void {
     link.type = 'image/x-icon';
     link.rel = 'shortcut icon';
     link.href = canvas.toDataURL('image/x-icon');
-    document.getElementsByTagName('head')[0].appendChild(link);
+    const head = document.getElementsByTagName('head')[0];
+
+    const oldFavicon = document.querySelectorAll('head > link[rel="shortcut icon"]');
+    oldFavicon.forEach((node) => head.removeChild(node));
+
+    head.appendChild(link);
 }
